@@ -42,48 +42,61 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         URL = driver.current_url
         # Assert if required
         print("Current URL " + URL)
+        print()
 
         name = driver.find_element(By.XPATH, "//input[@id='name']")
         name.send_keys("Testing")
+        time.sleep(2)
 
         email_address = driver.find_element(By.XPATH, "//input[@name='email']")
         email_address.send_keys("testing@testing.com")
+        time.sleep(2)
 
         password = driver.find_element(By.XPATH, "//input[@name='password']")
         password.send_keys("password")
+        time.sleep(2)
 
         company = driver.find_element(By.CSS_SELECTOR, "#company")
         company.send_keys("LambdaTest")
+        time.sleep(2)
 
         website = driver.find_element(By.CSS_SELECTOR, "#websitename")
         website.send_keys("https://wwww.lambdatest.com")
+        time.sleep(2)
 
         country_dropdown = Select(self.driver.find_element(By.XPATH, "//select[@name='country']"))
         country_dropdown.select_by_visible_text("United States")
+        time.sleep(2)
 
         city = driver.find_element(By.XPATH, "//input[@id='inputCity']")
         city.send_keys("San Jose")
+        time.sleep(2)
 
         address1 = driver.find_element(By.CSS_SELECTOR, "[placeholder='Address 1']")
         address1.send_keys("Googleplex, 1600 Amphitheatre Pkwy")
+        time.sleep(2)
 
         address2 = driver.find_element(By.CSS_SELECTOR, "[placeholder='Address 2']")
         address2.send_keys("Mountain View, CA 94043")
+        time.sleep(2)
 
         state = driver.find_element(By.CSS_SELECTOR, "#inputState")
         state.send_keys("California")
+        time.sleep(2)
 
         zipcode = self.driver.find_element(By.CSS_SELECTOR, "#inputZip")
         zipcode.send_keys("94088")
+        time.sleep(2)
 
         # Click on the Submit button
         submit_button = self.driver.find_element(By.CSS_SELECTOR, ".btn")
         submit_button.click()
+        time.sleep(2)
 
         # Assert if the page contains a certain text
         assert driver.page_source.find("Thanks for contacting us, we will get back to you shortly")
+        time.sleep(5)
 
-        time.sleep(10)
         print("Input Form Demo complete")
 
     def test_progress_bars(self):
@@ -98,11 +111,11 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         element = driver.find_element(By.XPATH, "//p[contains(.,'Progress Bar & Sliders')]")
         element.click()
         # wait.until(EC.element_to_be_clickable(element)).click()
+        time.sleep(3)
 
         # Click on the Drag & Drop Sliders
         drag_drop = driver.find_element(By.XPATH, "//a[.='Drag & Drop Sliders']")
         drag_drop.click()
-
         time.sleep(10)
 
         move_slider = driver.find_element(By.CSS_SELECTOR, "[value='20']")
