@@ -1,4 +1,4 @@
-# How to run Selenium automation tests on Hypertest (using PyUnit framework)
+# How to run Selenium automation tests on HyperTest (using PyUnit framework)
 
 Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's Parent Directory.
 
@@ -26,7 +26,7 @@ The target platform is set to Windows. Please set the *[os]* key to *[win]* in c
 os: [win]
 ```
 
-Python files in the 'tests' folder contain the 'tests' that will be run in parallel on the Hypertest grid. The test suite runner used in the example, in turn runs the tests in *tests/lt_sample_todo.py* and *tests/lt_selenium_playground.py*
+Python files in the 'tests' folder contain the 'tests' that will be run in parallel on the HyperTest grid. The test suite runner used in the example, in turn runs the tests in *tests/lt_sample_todo.py* and *tests/lt_selenium_playground.py*
 
 ```bash
 files: ["tests/lt_test_suite_runner.py"]
@@ -58,7 +58,7 @@ cacheDirectories:
   - CacheDir
 ```
 
-Content under the *pre* directive is the pre-condition that will be run before the tests are executed on Hypertest grid. The *--cache-dir* option in *pip3* is used for specifying the cache directory. It is important to note that downloaded packages that are cached are securely uploaded to a secure upload, before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
+Content under the *pre* directive is the pre-condition that will be run before the tests are executed on HyperTest grid. The *--cache-dir* option in *pip3* is used for specifying the cache directory. It is important to note that downloaded packages that are cached are securely uploaded to a secure upload, before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
 
 ```yaml
 pip3 install -r requirements.txt  --cache-dir CacheDir
@@ -78,20 +78,20 @@ upload:
   - reports/
 ```
 
-The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands to be run for executing the tests are put in an array (with a '-' preceding each item). In the current YAML file, Python command is used to run tests in *.py* files. The files are mentioned as array to *files* key are executed on Hypertest grid.
+The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands to be run for executing the tests are put in an array (with a '-' preceding each item). In the current YAML file, Python command is used to run tests in *.py* files. The files are mentioned as array to *files* key are executed on HyperTest grid.
 
 ```yaml
 testSuites:
   - python3 -s  $files
 ```
 
-The [user_name and access_key of LambdaTest](https://accounts.lambdatest.com/detail/profile) is appended to the *concierge* command using the *--user* and *--key* command-line options. The CLI option *--config* is used for providing the custom Hypertest YAML file (e.g. pyunit_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the Hypertest grid.
+The [user_name and access_key of LambdaTest](https://accounts.lambdatest.com/detail/profile) is appended to the *concierge* command using the *--user* and *--key* command-line options. The CLI option *--config* is used for providing the custom HyperTest YAML file (e.g. pyunit_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid.
 
 ```bash
 ./concierge --user LT_USERNAME --key LT_ACCESS_KEY --download-artifacts --config yaml/pyunit_hypertest_autosplit_sample.yaml --verbose
 ```
 
-Visit [Hypertest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
 
 ## Running tests using PyUnit using the Auto-Split strategy
 
@@ -152,7 +152,7 @@ cacheDirectories:
   - CacheDir
 ```
 
-Content under the *pre* directive is the pre-condition that will be run before the tests are executed on Hypertest grid. The *--cache-dir* option in *pip3* is used for specifying the cache directory. It is important to note that downloaded packages that are cached are securely uploaded to a secure upload, before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
+Content under the *pre* directive is the pre-condition that will be run before the tests are executed on HyperTest grid. The *--cache-dir* option in *pip3* is used for specifying the cache directory. It is important to note that downloaded packages that are cached are securely uploaded to a secure upload, before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
 
 ```yaml
 pip3 install -r requirements.txt  --cache-dir CacheDir
@@ -181,10 +181,10 @@ The *testRunnerCommand* contains the command that is used for triggering the tes
 testRunnerCommand: python3 -s $test
 ```
 
-Run the following command on the terminal to trigger the tests in Python files on the Hypertest grid.
+Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid.
 
 ```bash
 ./concierge --user LT_USERNAME --key LT_ACCESS_KEY --config yaml/pyunit_hypertest_autosplit_sample.yaml --verbose
 ```
 
-Visit [Hypertest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
