@@ -4,11 +4,8 @@ testSuiteTimeout: 90
 testSuiteStep: 90
 matrix:
   os: [win]
-  files: ["tests/lt_test_suite_runner.py"]
-# Export LambdaTest environment variables
-env:
-  LT_USERNAME: LT_USERNAME
-  LT_ACCESS_KEY: LT_ACCESS_KEY
+  # files: ["tests/lt_test_suite_runner.py"]
+  files: ["tests/lt_test_suite_runner_1.py", "tests/lt_test_suite_runner_2.py"]
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:

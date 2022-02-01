@@ -4,12 +4,8 @@ testSuiteTimeout: 90
 testSuiteStep: 90
 runson: win
 autosplit: true
-retryOnFailure: false
-concurrency: 1
-# Export Environment variables
-env:
-  LT_USERNAME: LT_USERNAME
-  LT_ACCESS_KEY: LT_ACCESS_KEY
+retryOnFailure: true
+concurrency: 2
 # Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
