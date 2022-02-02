@@ -1,16 +1,32 @@
 # How to run Selenium automation tests on HyperTest (using PyUnit framework)
 
-Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's Parent Directory.
+Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's parent directory.
 
 * Mac: https://downloads.lambdatest.com/concierge/darwin/concierge
 * Linux: https://downloads.lambdatest.com/concierge/linux/concierge
 * Windows: https://downloads.lambdatest.com/concierge/windows/concierge.exe
 
-[Note - The current project has concierge for Windows. Irrespective of the host OS, the concierge will auto-update whenever there is a new version on the server]
+[Note - The current project has concierge for macOS. Irrespective of the host OS, the concierge will auto-update whenever there is an updated version available on the server.]
+
+Before the tests are run, please set the environment variables LT_USERNAME & LT_ACCESS_KEY from the terminal. The account details are available in your [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
+
+For Windows:
+
+```bash
+set LT_USERNAME=LT_USERNAME
+set LT_ACCESS_KEY=LT_ACCESS_KEY
+```
+
+For macOS:
+
+```bash
+export LT_USERNAME=LT_USERNAME
+export LT_ACCESS_KEY=LT_ACCESS_KEY
+```
 
 ## Running tests in PyUnit using the Matrix strategy
 
-Matrix YAML file (*pyunit_hypertest_matrix_sample.yaml*) in the repo contains the following configuration:
+Matrix YAML file (*yaml/pyunit_hypertest_matrix_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -20,25 +36,45 @@ testSuiteStep: 90
 
 Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
  
-The target platform is set to Windows. Please set the *[os]* key to *[win]* in case the tests have to be executed on the macOS platform. 
+The target platform is set to Windows. Please set the *[os]* key to *[mac]* in case the tests have to be executed on the macOS platform. 
 
 ```yaml
 os: [win]
 ```
 
-Python files in the 'tests' folder contain the 'tests' that will be run in parallel on the HyperTest grid. The test suite runner used in the example, in turn runs the tests in *tests/lt_sample_todo.py* and *tests/lt_selenium_playground.py*
-
-```bash
-files: ["tests/lt_test_suite_runner.py"]
-```
-
-Environment variables *LT_USERNAME* and *LT_ACCESS_KEY* are added under *env* directive. The user_name and access_key to access the LambdaTest platform can be found in your [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page. Any more environment variables can be added in this section.
+Python files in the 'tests' folder contain the test suites that will be run on the HyperTest grid. In the example, the tests in the files *tests/lt_test_suite_runner_1.py* and *tests/lt_test_suite_runner_2.py* run in parallel using the specified input combinations.
 
 ```yaml
-env:
-  LT_USERNAME: LT_USERNAME
-  LT_ACCESS_KEY: LT_ACCESS_KEY
+files: ["tests/lt_test_suite_runner_1.py", "tests/lt_test_suite_runner_2.py"]
 ```
+
+To ensure that the package dependencies are not downloaded in subsequent runs, dependency caching is enabled in the YAML file. The first step is to set the Key which is used to cache directories.
+
+```yaml
+cacheKey: '{{ checksum "requirements.txt" }}'
+```
+
+Set the array of files & directories to be cached. In the example, all the packages will be cached in the *CacheDir* directory.
+
+```yaml
+cacheDirectories:
+  - CacheDir
+```
+
+Steps (or commands) that need to be run before the test execution are listed in the *pre* run step. In the example, the packages listed in *requirements.txt* are installed using *pip3* command. The *--cache-dir* option is used for specifying the location of the directory used for caching the packages (i.e. *CacheDir*).
+
+```yaml
+pre:
+  - pip3 install -r requirements.txt --cache-dir CacheDir
+```
+
+Steps (or commands) that need to run after the test executiona are listed in the *post* step. In the example, we cat the contents of *yaml/pyunit_hypertest_matrix_sample.yaml*
+
+```yaml
+post:
+  - cat yaml/pyunit_hypertest_matrix_sample.yaml
+```
+
 ### Matrix Execution: Pre, Post, and Dependency Caching for faster package download & installation
 
 To leverage the advantage offered by *Dependency Caching* in HyperTest, we first check the integrity of *requirements.txt* using checksum functionality
