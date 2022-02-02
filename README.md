@@ -99,7 +99,7 @@ The CLI option *--config* is used for providing the custom HyperTest YAML file (
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
 
-
+<img width="1414" alt="pyunit_matrix_execution" src="https://user-images.githubusercontent.com/1688653/152155422-bca002b1-4331-4b7e-82e2-7b3588391dc0.png">
 
 ## Running tests using PyUnit using the Auto-Split strategy
 
@@ -196,3 +196,5 @@ Run the following command on the terminal to trigger the tests in Python files o
 ```
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+
+<img width="1414" alt="pyunit_autosplit_execution" src="https://user-images.githubusercontent.com/1688653/152155403-969161d7-3d0c-4238-b80a-a63c88ea1023.png">
