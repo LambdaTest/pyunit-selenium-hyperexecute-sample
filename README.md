@@ -48,6 +48,8 @@ Python files in the 'tests' folder contain the test suites that will be run on t
 files: ["tests/lt_test_suite_runner_1.py", "tests/lt_test_suite_runner_2.py"]
 ```
 
+### Matrix Execution: Pre, Post, and Dependency Caching for faster package download & installation
+
 To ensure that the package dependencies are not downloaded in subsequent runs, dependency caching is enabled in the YAML file. The first step is to set the Key which is used to cache directories.
 
 ```yaml
@@ -61,7 +63,7 @@ cacheDirectories:
   - CacheDir
 ```
 
-Steps (or commands) that need to be run before the test execution are listed in the *pre* run step. In the example, the packages listed in *requirements.txt* are installed using *pip3* command. The *--cache-dir* option is used for specifying the location of the directory used for caching the packages (i.e. *CacheDir*).
+Steps (or commands) that need to be run before the test execution are listed in the *pre* run step. In the example, the packages listed in *requirements.txt* are installed using *pip3* command. The *--cache-dir* option is used for specifying the location of the directory used for caching the packages (i.e. *CacheDir*). It is important to note that downloaded packages that are cached are securely uploaded to a secure clooud, before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
 
 ```yaml
 pre:
@@ -75,59 +77,29 @@ post:
   - cat yaml/pyunit_hypertest_matrix_sample.yaml
 ```
 
-### Matrix Execution: Pre, Post, and Dependency Caching for faster package download & installation
-
-To leverage the advantage offered by *Dependency Caching* in HyperTest, we first check the integrity of *requirements.txt* using checksum functionality
-
-```yaml
-cacheKey: '{{ checksum "requirements.txt" }}'
-```
-
-By default, *pip* in Python saves the downloaded packages in the cache so that next time, the package download request can be serviced from the cache (rather than re-downloading it again). The caching advantage offered by *pip* can be leveraged in HyperTest whereby the downloaded packages can be stored (or cached) in a secure server for future executions. The packages available in the cache will only be used if the checksum stage results in a Pass.
-
-The *cacheDirectories* directive is used for specifying the directory where the packages have to be cached. The mentioned directory will override the default directory where Python packages are normally cached, further information about Caching in pip is available [here](https://pip.pypa.io/en/stable/cli/pip_cache/). The packages downloaded using pip will be cached in the directory (or location) mentioned under the *cacheDirectories* directive.
-
-In our case, the downloaded packages are cached in *CacheDir* folder in the project's root. The folder is automatically created when the packages mentioned in *requirements.txt* are downloaded.  
-
-```yaml
-cacheDirectories:
-  - CacheDir
-```
-
-Content under the *pre* directive is the pre-condition that will be run before the tests are executed on HyperTest grid. The *--cache-dir* option in *pip3* is used for specifying the cache directory. It is important to note that downloaded packages that are cached are securely uploaded to a secure upload, before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
-
-```yaml
-pip3 install -r requirements.txt  --cache-dir CacheDir
-```
-
-The *post* directive contains a list of commands that run as a part of post-test execution. Here, the contents of *yaml/pyunit_hypertest_matrix_sample.yaml* are read using cat as a part of post step. 
-
-```yaml
-post:
-  - cat yaml/pyunit_hypertest_matrix_sample.yaml
-```
-
-The *upload* directive contains an array of entries for requesting HyperTest to perform certain actions (e.g.upload Artifacts - files, reports, etc.) after the test (or task) completion. The test artifacts from the respective VM are downloaded using the *--download-artifacts* option provided by Concierge CLI. In the provided sample, the *reports* folder that contains the test report is downloaded on the local machine.
+The *upload* directive informs HyperTest to upload Artefacts [files, reports, etc.] that are generated after task completion. In the example, the *reports* folder that contains the test reports will be uploaded by HyperTest. 
 
 ```yaml
 upload:
   - reports/
 ```
 
-The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands to be run for executing the tests are put in an array (with a '-' preceding each item). In the current YAML file, Python command is used to run tests in *.py* files. The files are mentioned as array to *files* key are executed on HyperTest grid.
+The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands to be run for executing the tests are put in an array (with a '-' preceding each item). In the current YAML file, Python command is used to run tests in *.py* files. The files are mentioned as array to *files* key that is a part of the matrix.
 
 ```yaml
 testSuites:
   - python3 -s  $files
 ```
 
-The [user_name and access_key of LambdaTest](https://accounts.lambdatest.com/detail/profile) is appended to the *concierge* command using the *--user* and *--key* command-line options. The CLI option *--config* is used for providing the custom HyperTest YAML file (e.g. pyunit_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid.
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/pyunit_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to downoad the artifacts for the job.
 
 ```bash
-./concierge --user LT_USERNAME --key LT_ACCESS_KEY --download-artifacts --config yaml/pyunit_hypertest_autosplit_sample.yaml --verbose
+./concierge --download-artifacts --config yaml/pyunit_hypertest_autosplit_sample.yaml --verbose
 ```
 
-Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
+
+
 
 ## Running tests using PyUnit using the Auto-Split strategy
 
