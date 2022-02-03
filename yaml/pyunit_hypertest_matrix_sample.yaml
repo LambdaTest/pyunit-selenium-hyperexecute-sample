@@ -5,7 +5,7 @@ testSuiteTimeout: 90
 testSuiteStep: 90
 
 matrix:
-  files: ["tests/lt_test_suite_runner_1.py", "tests/lt_test_suite_runner_2.py"]
+  files: ["tests/lt_sample_todo.py", "tests/lt_selenium_playground.py"]
 
 runson: win
 
@@ -18,16 +18,13 @@ pre:
 post:
   - cat yaml/pyunit_hypertest_matrix_sample.yaml
 
-
 uploadArtefacts:
-  - name: reports
+  - name: example_1
     path: |
-       reports/*
+       example_1/*
+  - name: example_2
+    path: |
+       example_2/*
   
-  - name: screenshots
-    path: |
-       screenshots/**/*.png
-
-
 testSuites:
   - python3 -s  $files
