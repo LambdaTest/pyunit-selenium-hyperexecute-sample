@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.support.ui import Select
+import HtmlTestRunner
 
 # Username and AccessKey available at https://accounts.lambdatest.com/detail/profile
 username = os.environ.get("LT_USERNAME")
@@ -128,5 +129,5 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-if __name__ == "__main__":
-    unittest.main()
+if __name__ == '__main__':
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='example_2'))
