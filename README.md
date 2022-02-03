@@ -101,7 +101,7 @@ Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hyperte
 
 <img width="1414" alt="pyunit_matrix_execution" src="https://user-images.githubusercontent.com/1688653/152155422-bca002b1-4331-4b7e-82e2-7b3588391dc0.png">
 
-## Running tests using PyUnit using the Auto-Split strategy
+## Running tests in PyUnit using the Auto-Split strategy
 
 Auto-split YAML file (yaml/pyunit_hypertest_autosplit_sample.yaml) in the repo contains the following configuration:
 
