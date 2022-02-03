@@ -66,5 +66,5 @@ class HyperTestPyUnitTest(unittest.TestCase):
         time.sleep(3)
         print (added_item)
 
-if __name__ == "__main__":
-     unittest.main()
+if __name__ == '__main__':
+    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='example_1'))
