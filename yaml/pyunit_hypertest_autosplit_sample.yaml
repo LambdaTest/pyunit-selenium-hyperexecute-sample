@@ -20,21 +20,17 @@ pre:
 post:
   - cat yaml/pyunit_hypertest_autosplit_sample.yaml
 
-
 uploadArtefacts:
-  - name: reports
+  - name: example_1
     path: |
-       reports/*
-  
-  - name: screenshots
+       example_1/*
+  - name: example_2
     path: |
-       screenshots/**/*.png
-
+       example_2/*
 
 testDiscovery:
   type: raw
   mode: dynamic
-  command: grep -nri 'HTML_TestRunner_TestSuite' tests -ir --include=\*.py | sed 's/:.*//'
+  command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
   
-
 testRunnerCommand: python3 -s $test
