@@ -21,6 +21,9 @@
 
 - Navigating to automation dashboard to view logs
 
+- Provide links to our support, chat, webpage, website etc
+- Add tags and description to github repo
+
 
 
 Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's parent directory.
