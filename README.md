@@ -1,12 +1,36 @@
 # How to run Selenium automation tests on HyperTest (using PyUnit framework)
 
+
+## Add tabele of contents
+- Download concierge
+- Matrix (provide link to documentation)
+   - Matrix core
+   - Pre steps
+   - Post
+   - Artefacts
+
+- Autosplit (provide link to documentation)
+   - Autosplit core
+   - Pre steps
+   - Post
+   - Artefacts
+
+- Secrets management (provide link to documentation)
+  - Generic explanatory para
+  - Screenshot of our UI
+
+- Navigating to automation dashboard to view logs
+
+
+
 Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's parent directory.
 
 * Mac: https://downloads.lambdatest.com/concierge/darwin/concierge
 * Linux: https://downloads.lambdatest.com/concierge/linux/concierge
 * Windows: https://downloads.lambdatest.com/concierge/windows/concierge.exe
 
-[Note - The current project has the concierge for macOS. Irrespective of the host OS, the concierge will auto-update whenever an updated version is available on the server.]
+> download concierge for you OS. Elaborage
+
 
 Before the tests are run, please set the environment variables LT_USERNAME & LT_ACCESS_KEY from the terminal. The account details are available on your [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
 
@@ -38,6 +62,7 @@ Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
  
 The target platform is set to Windows. Please set the *[os]* key to *[mac]* if the tests have to be executed on the macOS platform. 
 
+--> THis has to be changed/removed
 ```yaml
 os: [win]
 ```
