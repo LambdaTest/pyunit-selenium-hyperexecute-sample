@@ -343,7 +343,7 @@ Here is a screenshot that lists the automation test that was executed on the Hyp
 
 <img width="1425" alt="pyunit_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152553689-817191b9-db5b-4fa9-a233-df1779929191.png">
 
-# We are here to help you :)
+## We are here to help you :)
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
 * HyperTest HomePage: https://www.lambdatest.com/support/docs/getting-started-with-hypertest/
 * Lambdatest HomePage: https://www.lambdatest.com
