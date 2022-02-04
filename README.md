@@ -288,7 +288,7 @@ uploadArtefacts:
     }
   ]
 ```
-
+HyperTest also facilitates the provision to download the artifacts on your local machine. In order to 
 ### Test Execution
 
 The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *yaml/pyunit_hypertest_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
