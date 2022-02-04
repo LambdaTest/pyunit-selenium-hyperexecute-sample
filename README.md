@@ -1,48 +1,46 @@
 # How to run Selenium automation tests on HyperTest (using PyUnit framework)
 
+### Table Of Contents
 
-## Add tabele of contents
-- Download concierge
-- Matrix (provide link to documentation)
-   - Matrix core
-   - Pre steps
-   - Post
-   - Artefacts
+* [Pre-requisites](#pre-requisites)
+   - [Download Concierge](#download-concierge)
+   - [Configure Environment Variables](#configure-environment-variables)
+   
+* [Matrix Execution with PyUnit](#matrix-execution-with-pyunit)
+   - [Core](#core)
+   - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching)
+   - [Post Steps](#post-steps)
+   - [Artefacts Management](#artefacts-management)
+   - [Test Execution](#test-execution)
 
-- Autosplit (provide link to documentation)
-   - Autosplit core
-   - Pre steps
-   - Post
-   - Artefacts
+* Auto-Split Execution with PyUnit
+   - Core
+   - Pre Steps and Dependency Caching
+   - Post Steps
+   - Artefacts Management
+   - Test Execution
 
-- Secrets management (provide link to documentation)
+* Secrets management
   - Generic explanatory para
   - Screenshot of our UI
 
-- Navigating to automation dashboard to view logs
+# Pre-requisites
 
-- Provide links to our support, chat, webpage, website etc
-- Add tags and description to github repo
+Before using HyperTest, you have to download Concierge CLI corresponding to the host OS. Along with it, you also need to export the environment variables *LT_USERNAME* and *LT_ACCESS_KEY* that are available in the [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
 
+## Download Concierge
 
+Concierge is a CLI for interacting and running the tests on the HyperTest Grid. Concierge provides a host of other useful features that accelerate test execution. In order to trigger tests using Concierge, you need to download the Concierge binary corresponding to the platform (or OS) from where the tests are triggered:
 
-Download the concierge binary corresponding to the host operating system. It is recommended to download the binary in the project's parent directory.
+Also, it is recommended to download the binary in the project's parent directory. Shown below is the location from where you can download the Concierge binary: 
 
 * Mac: https://downloads.lambdatest.com/concierge/darwin/concierge
 * Linux: https://downloads.lambdatest.com/concierge/linux/concierge
 * Windows: https://downloads.lambdatest.com/concierge/windows/concierge.exe
 
-> download concierge for you OS. Elaborage
-
+## Configure Environment Variables
 
 Before the tests are run, please set the environment variables LT_USERNAME & LT_ACCESS_KEY from the terminal. The account details are available on your [LambdaTest Profile](https://accounts.lambdatest.com/detail/profile) page.
-
-For Windows:
-
-```bash
-set LT_USERNAME=LT_USERNAME
-set LT_ACCESS_KEY=LT_ACCESS_KEY
-```
 
 For macOS:
 
@@ -51,9 +49,29 @@ export LT_USERNAME=LT_USERNAME
 export LT_ACCESS_KEY=LT_ACCESS_KEY
 ```
 
-## Running tests in PyUnit using the Matrix strategy
+For Linux:
 
-Matrix YAML file (*yaml/pyunit_hypertest_matrix_sample.yaml*) in the repo contains the following configuration:
+```bash
+export LT_USERNAME=LT_USERNAME
+export LT_ACCESS_KEY=LT_ACCESS_KEY
+```
+
+For Windows:
+
+```bash
+set LT_USERNAME=LT_USERNAME
+set LT_ACCESS_KEY=LT_ACCESS_KEY
+```
+
+# Matrix Execution with PyUnit
+
+Matrix-based test execution is used for running the same tests across different test (or input) combinations. The Matrix directive in HyperTest YAML file is a *key:value* pair where value is an array of strings.
+
+Also, the *key:value* pairs are opaque strings for HyperTest. For more information about matrix multiplexing, check out the [Matrix Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/#matrix-based-build-multiplexing)
+
+### Core
+
+In the current example, matrix YAML file (*yaml/pyunit_hypertest_matrix_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -65,18 +83,24 @@ Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
  
 The target platform is set to Windows. Please set the *[os]* key to *[mac]* if the tests have to be executed on the macOS platform. 
 
---> THis has to be changed/removed
 ```yaml
 os: [win]
 ```
 
-Python files in the 'tests' folder contain the test suites run on the HyperTest grid. In the example, the tests in the files *tests/lt_test_suite_runner_1.py* and *tests/lt_test_suite_runner_2.py* run in parallel using the specified input combinations.
+Python files in the 'tests' folder contain the test suites run on the HyperTest grid. In the example, the tests in the files *tests/lt_sample_todo.py* and *tests/lt_selenium_playground.py* run in parallel using the specified input combinations.
 
 ```yaml
-files: ["tests/lt_test_suite_runner_1.py", "tests/lt_test_suite_runner_2.py"]
+files: ["tests/lt_sample_todo.py", "tests/lt_selenium_playground.py"]
 ```
 
-### Matrix Execution: Pre, Post, and Dependency Caching for faster package download & installation
+The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands for executing the tests are put in an array (with a '-' preceding each item). The Python command is used to run tests in *.py* files. The files are mentioned as an array to the *files* key that is a part of the matrix.
+
+```yaml
+testSuites:
+  - python3 -s  $files
+```
+
+### Pre Steps and Dependency Caching
 
 Dependency caching is enabled in the YAML file to ensure that the package dependencies are not downloaded in subsequent runs. The first step is to set the Key used to cache directories.
 
@@ -91,32 +115,44 @@ cacheDirectories:
   - CacheDir
 ```
 
-Steps (or commands) that must run before the test execution are listed in the *pre* run step. In the example, the packages listed in *requirements.txt* are installed using the *pip3* command. The *--cache-dir* option is used for specifying the location of the directory used for caching the packages (i.e. *CacheDir*). It is important to note that downloaded cached packages are securely uploaded to a secure cloud before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
+Steps (or commands) that must run before the test execution are listed in the *pre* run step. In the example, the packages listed in *requirements.txt* are installed using the *pip3* command.
+
+The *--cache-dir* option is used for specifying the location of the directory used for caching the packages (i.e. *CacheDir*). It is important to note that downloaded cached packages are securely uploaded to a secure cloud before the execution environment is auto-purged after build completion. Please modify *requirements.txt* as per the project requirements.
 
 ```yaml
 pre:
   - pip3 install -r requirements.txt --cache-dir CacheDir
 ```
 
-Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we cat the contents of *yaml/pyunit_hypertest_matrix_sample.yaml*
+### Post Steps
+
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/pyunit_hypertest_matrix_sample.yaml*
 
 ```yaml
 post:
   - cat yaml/pyunit_hypertest_matrix_sample.yaml
 ```
 
-The *upload* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, the *reports* folder that contains the test reports will be uploaded by HyperTest. 
+### Artefacts Management
+
+The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
+
+The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, the *reports* folder that contains the test reports will be uploaded by HyperTest.
 
 ```yaml
-upload:
-  - reports/
-```
+mergeArtifacts: true
 
-The *testSuites* object contains a list of commands (that can be presented in an array). In the current YAML file, commands for executing the tests are put in an array (with a '-' preceding each item). The Python command is used to run tests in *.py* files. The files are mentioned as an array to the *files* key that is a part of the matrix.
-
-```yaml
-testSuites:
-  - python3 -s  $files
+uploadArtefacts:
+  [
+    {
+      "name": "example_1",
+      "path": ["example_1/**"]
+    },
+    {
+      "name": "example_2",
+      "path": ["example_2/**"]
+    }
+  ]
 ```
 
 The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/pyunit_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
