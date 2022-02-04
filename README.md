@@ -288,7 +288,11 @@ uploadArtefacts:
     }
   ]
 ```
-HyperTest also facilitates the provision to download the artifacts on your local machine. In order to 
+HyperTest also facilitates the provision to download the artifacts on your local machine. In order to
+
+<img width="1235" alt="pyunit_autosplit_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152527265-27011c1c-95ee-4ff5-ae56-e570a0c4391a.png">
+
+<img width="1420" alt="pyunit_autosplit_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152527278-57a071f2-7b17-4a2a-822a-7bf9759a7531.png">
 ### Test Execution
 
 The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *yaml/pyunit_hypertest_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
