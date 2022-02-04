@@ -18,7 +18,7 @@
    - [Artefacts Management](#artefacts-management-1)
    - [Test Execution](#test-execution-1)
 
-* [Secrets management](#secrets-management)
+* [Secrets Management](#secrets-management)
 
 # Pre-requisites
 
@@ -312,7 +312,7 @@ Shown below is the execution screenshot when the YAML file is triggered from the
 
 <img width="1408" alt="pyunit_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152523202-7da45332-560c-4e9b-b77b-8e750faea20d.png">
 
-## Secrets management
+## Secrets Management
 
 In case you want to use any secret keys in the YAML file, the same can be set by clicking on the *Secrets* button the dashboard.
 
