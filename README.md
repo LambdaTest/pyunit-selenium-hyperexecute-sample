@@ -152,6 +152,14 @@ uploadArtefacts:
   ]
 ```
 
+HyperTest also facilitates the provision to download the artefacts on your local machine. To download the artefacts, click on Artefacts button corresponding to the associated TestID.
+
+<img width="1425" alt="pyunit_matrix_artefacts_1" src="https://user-images.githubusercontent.com/1688653/152557067-5a7a6340-b4de-42c4-8805-de2ba403b851.png">
+
+Now, you can download the artefacts by clicking on the Download button as shown below:
+
+<img width="1425" alt="pyunit_matrix_artefacts_2" src="https://user-images.githubusercontent.com/1688653/152557101-1216351b-5461-4729-8d26-a1ab2def068e.png">
+
 ## Test Execution
 
 The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *yaml/pyunit_hypertest_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
