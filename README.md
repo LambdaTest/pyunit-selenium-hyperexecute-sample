@@ -19,6 +19,7 @@
    - [Test Execution](#test-execution-1)
 
 * [Secrets Management](#secrets-management)
+* [Navigation in Automation Dashboard](#navigation-in-automation-dashboard)
 
 # Pre-requisites
 
@@ -321,3 +322,15 @@ In case you want to use any secret keys in the YAML file, the same can be set by
 Now create *secrets* that you can use in the HyperTest YAML file.
 
 <img width="362" alt="pyunit_secrets_key_2" src="https://user-images.githubusercontent.com/1688653/152540977-436a8ba8-0ded-44db-8407-b3fb21b1f98d.png">
+
+## Navigation in Automation Dashboard
+
+HyperTest lets you navigate from/to *Test Logs* in Automation Dashboard from/to *HyperTest Logs*. You also get relevant get relevant Selenium test details like video, network log, commands, Exceptions & more in the Dashboard. Effortlessly navigate from the automation dashboard to HyperTest logs (and vice-versa) to get more details of the test execution.
+
+Shown below is the HyperTest Automation dashboard which also lists the tests that were executed as a part of the test suite:
+
+<img width="1238" alt="pyunit_hypertest_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152553665-9411f98c-e8de-487a-97a7-04310f8ef43a.png">
+
+Here is a screenshot that lists the automation test that was executed on the HyperTest grid:
+
+<img width="1425" alt="pyunit_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152553689-817191b9-db5b-4fa9-a233-df1779929191.png">
