@@ -1,7 +1,5 @@
 # How to run Selenium automation tests on HyperTest (using PyUnit framework)
 
-### Table Of Contents
-
 * [Pre-requisites](#pre-requisites)
    - [Download Concierge](#download-concierge)
    - [Configure Environment Variables](#configure-environment-variables)
@@ -13,12 +11,12 @@
    - [Artefacts Management](#artefacts-management)
    - [Test Execution](#test-execution)
 
-* Auto-Split Execution with PyUnit
-   - Core
-   - Pre Steps and Dependency Caching
-   - Post Steps
-   - Artefacts Management
-   - Test Execution
+* [Auto-Split Execution with PyUnit](#auto-split-execution-with-pyunit)
+   - [Core](#core-1)
+   - [Pre Steps and Dependency Caching](#pre-steps-and-dependency-caching-1)
+   - [Post Steps](#post-steps-1)
+   - [Artefacts Management](#artefacts-management-1)
+   - [Test Execution](#test-execution-1)
 
 * Secrets management
   - Generic explanatory para
@@ -81,10 +79,10 @@ testSuiteStep: 90
 
 Global timeout, testSuite timeout, and testSuite timeout are set to 90 minutes.
  
-The target platform is set to Windows. Please set the *[os]* key to *[mac]* if the tests have to be executed on the macOS platform. 
+The target platform is set to Windows. Please set the *[runson]* key to *[mac]* if the tests have to be executed on the macOS platform. 
 
 ```yaml
-os: [win]
+runson: win
 ```
 
 Python files in the 'tests' folder contain the test suites run on the HyperTest grid. In the example, the tests in the files *tests/lt_sample_todo.py* and *tests/lt_selenium_playground.py* run in parallel using the specified input combinations.
@@ -137,7 +135,7 @@ post:
 
 The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
 
-The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, the *reports* folder that contains the test reports will be uploaded by HyperTest.
+The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion. In the example, *path* consists of a regex for parsing the directory (i.e. *example_1* and *example_2* that contains the test reports).
 
 ```yaml
 mergeArtifacts: true
@@ -155,19 +153,33 @@ uploadArtefacts:
   ]
 ```
 
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/pyunit_hypertest_matrix_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
+## Test Execution
+
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *yaml/pyunit_hypertest_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
 
 ```bash
-./concierge --download-artifacts --config yaml/pyunit_hypertest_matrix_sample.yaml --verbose
+./concierge --download-artifacts --config --verbose yaml/pyunit_hypertest_matrix_sample.yaml
 ```
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
 
 <img width="1414" alt="pyunit_matrix_execution" src="https://user-images.githubusercontent.com/1688653/152155422-bca002b1-4331-4b7e-82e2-7b3588391dc0.png">
 
-## Running tests in PyUnit using the Auto-Split strategy
+Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-Auto-split YAML file (yaml/pyunit_hypertest_autosplit_sample.yaml) in the repo contains the following configuration:
+<img width="1413" alt="pyunit_cli_execution" src="https://user-images.githubusercontent.com/1688653/152514085-8b56de2b-4b92-4b81-a94d-58757f9cb3f7.png">
+
+<img width="1101" alt="pyunit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152516090-b06d3d80-145f-477a-b1ed-25c1d0be3be5.png">
+
+## Auto-Split Execution with PyUnit
+
+Auto-split execution mechanism lets you run tests at predefined concurrency and distribute the tests over the available infrastructure. Concurrency can be achieved at different levels - file, module, test suite, test, scenario, etc.
+
+For more information about auto-split execution, check out the [Auto-Split Getting Started Guide](https://www.lambdatest.com/support/docs/getting-started-with-hypertest/#smart-auto-test-splitting)
+
+### Core
+
+Auto-split YAML file (*yaml/pyunit_hypertest_autosplit_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -197,15 +209,17 @@ maxRetries: 5
 concurrency: 2
 ```
 
-### Auto-Split Execution: Pre, Post, and Dependency Caching for faster package download & installation
+## Pre Steps and Dependency Caching
 
-To leverage the advantage offered by *Dependency Caching* in HyperTest, we first check the integrity of *requirements.txt* using checksum functionality.
+To leverage the advantage offered by *Dependency Caching* in HyperTest, the integrity of *requirements.txt* is checked using the checksum functionality.
 
 ```yaml
 cacheKey: '{{ checksum "requirements.txt" }}'
 ```
 
-By default, *pip* in Python saves the downloaded packages in the cache so that next time, the package download request can be serviced from the cache (rather than re-downloading it again). The caching advantage offered by *pip* can be leveraged in HyperTest, whereby the downloaded packages can be stored (or cached) in a secure server for future executions. The packages available in the cache will only be used if the checksum stage results in a Pass.
+By default, *pip* in Python saves the downloaded packages in the cache so that next time, the package download request can be serviced from the cache (rather than re-downloading it again).
+
+The caching advantage offered by *pip* can be leveraged in HyperTest, whereby the downloaded packages can be stored (or cached) in a secure server for future executions. The packages available in the cache will only be used if the checksum stage results in a Pass.
 
 The *cacheDirectories* directive is used for specifying the directory where the packages have to be cached. The mentioned directory will override the default directory where Python packages are usually cached; further information about caching in pip is available [here](https://pip.pypa.io/en/stable/cli/pip_cache/). The packages downloaded using pip will be cached in the directory (or location) mentioned under the *cacheDirectories* directive.
 
@@ -222,6 +236,8 @@ Content under the *pre* directive is the precondition that will run before the t
 pip3 install -r requirements.txt  --cache-dir CacheDir
 ```
 
+## Post Steps
+
 The *post* directive contains a list of commands that run as a part of post-test execution. Here, the contents of *yaml/pyunit_hypertest_autosplit_sample.yaml* are read using the *cat* command as a part of the post step. 
 
 ```yaml
@@ -229,23 +245,21 @@ post:
   - cat yaml/pyunit_hypertest_autosplit_sample.yaml
 ```
 
-The *upload* directive informs HyperTest to upload Artefacts [files, reports, etc.] generated after task completion. In the example, the *reports* folder that contains the test reports will be uploaded by HyperTest. 
+The *testDiscovery* directive contains the command that gives details of the mode of execution, along with detailing the command that is used for test execution. Here, we are fetching the list of Python files that would be further executed using the *value* passed in the *testRunnerCommand*
 
 ```yaml
-upload:
-  - reports/
-```
-
-The *testDiscoverer* directive contains the command that gives details of the tests that are a part of the project. Here, we are fetching the list of Python files that would be further executed using the *value* passed in the *testRunnerCommand*
-
-```bash
-testDiscoverer: grep -nri 'HTML_TestRunner_TestSuite' tests -ir --include=\*.py | sed 's/:.*//'
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
+  
+testRunnerCommand: python3 -s $test
 ```
 
 Running the above command on the terminal will give a list of Python files that are located in the Project folder:
 
-* tests/lt_test_suite_runner_2.py
-* tests/lt_test_suite_runner_1.py
+* tests/lt_selenium_playground.py
+* tests/lt_sample_todo.py
 
 The *testRunnerCommand* contains the command that is used for triggering the test. The output fetched from the *testDiscoverer* command acts as an input to the *testRunner* command.
 
@@ -253,10 +267,34 @@ The *testRunnerCommand* contains the command that is used for triggering the tes
 testRunnerCommand: python3 -s $test
 ```
 
-The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. yaml/pyunit_hypertest_autosplit_sample.yaml). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
+### Artefacts Management
+
+The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artefacts and combing artefacts generated under each task.
+
+The *uploadArtefacts* directive informs HyperTest to upload artefacts [files, reports, etc.] generated after task completion.  In the example, *path* consists of a regex for parsing the directory (i.e. *example_1* and *example_2* that contains the test reports).
+
+```yaml
+mergeArtifacts: true
+
+uploadArtefacts:
+  [
+    {
+      "name": "example_1",
+      "path": ["example_1/**"]
+    },
+    {
+      "name": "example_2",
+      "path": ["example_2/**"]
+    }
+  ]
+```
+
+### Test Execution
+
+The CLI option *--config* is used for providing the custom HyperTest YAML file (i.e. *yaml/pyunit_hypertest_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperTest grid. The *--download-artifacts* option is used to inform HyperTest to download the artefacts for the job.
 
 ```bash
-./concierge --download-artifacts --config yaml/pyunit_hypertest_autosplit_sample.yaml --verbose
+./concierge --download-artifacts --verbose --config yaml/pyunit_hypertest_autosplit_sample.yaml
 ```
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
