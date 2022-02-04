@@ -313,3 +313,11 @@ Shown below is the execution screenshot when the YAML file is triggered from the
 <img width="1412" alt="pyunit_autosplit_cli1_execution" src="https://user-images.githubusercontent.com/1688653/152523181-7acbfa32-e53a-454e-b4a6-dd7834498482.png">
 
 <img width="1408" alt="pyunit_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152523202-7da45332-560c-4e9b-b77b-8e750faea20d.png">
+
+## Secrets management
+
+In case you want to use any secret keys in the YAML file, the same can be set by clicking on the *Secrets* button the dashboard.
+
+<img width="703" alt="pyunit_secrets_key_1" src="https://user-images.githubusercontent.com/1688653/152540968-90e4e8bc-3eb4-4259-856b-5e513cbd19b5.png">
+
+<img width="362" alt="pyunit_secrets_key_2" src="https://user-images.githubusercontent.com/1688653/152540977-436a8ba8-0ded-44db-8407-b3fb21b1f98d.png">
