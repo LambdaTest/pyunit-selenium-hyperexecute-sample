@@ -325,11 +325,11 @@ The CLI option *--config* is used for providing the custom HyperTest YAML file (
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
 
-<img width="1421" alt="pyunit_autosplit_execution_1" src="https://user-images.githubusercontent.com/1688653/152998595-7e310650-590f-493b-b498-fec82cf01a88.png">
+<img width="1426" alt="pyunit_autosplit_execution_latest" src="https://user-images.githubusercontent.com/1688653/153028127-c3c21f07-cffa-4fe7-a08e-0d78c2542b8a.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-<img width="1412" alt="pyunit_autosplit_cli1_execution" src="https://user-images.githubusercontent.com/1688653/152523181-7acbfa32-e53a-454e-b4a6-dd7834498482.png">
+<img width="1421" alt="pyunit_autosplit_execution_1" src="https://user-images.githubusercontent.com/1688653/152998595-7e310650-590f-493b-b498-fec82cf01a88.png">
 
 <img width="1408" alt="pyunit_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152523202-7da45332-560c-4e9b-b77b-8e750faea20d.png">
 
