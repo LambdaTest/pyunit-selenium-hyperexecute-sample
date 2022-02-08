@@ -182,7 +182,7 @@ The CLI option *--config* is used for providing the custom HyperTest YAML file (
 
 Visit [HyperTest Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
 
-<img width="1414" alt="pyunit_matrix_execution" src="https://user-images.githubusercontent.com/1688653/152155422-bca002b1-4331-4b7e-82e2-7b3588391dc0.png">
+<img width="1430" alt="pyunit_matrix_execution_latest" src="https://user-images.githubusercontent.com/1688653/153026702-fc5c23aa-acd7-4e35-9b8a-dd0d8af1207c.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
