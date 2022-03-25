@@ -28,10 +28,10 @@ post:
 mergeArtifacts: true
 
 uploadArtefacts:
-  - name: example_1
+  - name: TestReport1
     path:
      - example_1/**
-  - name: example_2
+  - name: TestReport2
     path:
      - example_2/**
 
@@ -40,4 +40,4 @@ testDiscovery:
   mode: dynamic
   command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
   
-testRunnerCommand: python3 -s $test
+testRunnerCommand: python3 $test
