@@ -33,4 +33,4 @@ uploadArtefacts:
      - example_2/**
 
 testSuites:
-  - python3 -s  $files
+  - python3 $files
