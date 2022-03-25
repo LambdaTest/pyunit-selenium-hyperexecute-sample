@@ -25,10 +25,10 @@ post:
 mergeArtifacts: true
 
 uploadArtefacts:
-  - name: example_1
+  - name: TestReport1
     path:
      - example_1/**
-  - name: example_2
+  - name: TestReport2
     path:
      - example_2/**
 
