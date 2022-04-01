@@ -1,4 +1,4 @@
-<img height="100" alt="hypertest_logo" src="https://user-images.githubusercontent.com/1688653/159473714-384e60ba-d830-435e-a33f-730df3c3ebc6.png">
+<img height="100" alt="hyperexecute_logo" src="https://user-images.githubusercontent.com/1688653/159473714-384e60ba-d830-435e-a33f-730df3c3ebc6.png">
 
 HyperExecute is a smart test orchestration platform to run end-to-end Selenium tests at the fastest speed possible. HyperExecute lets you achieve an accelerated time to market by providing a test infrastructure that offers optimal speed, test orchestration, and detailed execution logs.
 
@@ -176,7 +176,7 @@ The CLI option *--config* is used for providing the custom HyperExecute YAML fil
 ./concierge --download-artifacts --config --verbose yaml/pyunit_hyperexecute_matrix_sample.yaml
 ```
 
-Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution:
+Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
 
 <img width="1430" alt="pyunit_matrix_execution_latest" src="https://user-images.githubusercontent.com/1688653/160466985-833323ae-b009-4c71-8b5d-1a6419ccbf8c.png">
 
@@ -266,7 +266,7 @@ The *testDiscovery* directive contains the command that gives details of the mod
 testDiscovery:
   type: raw
   mode: dynamic
-  command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
+  command: grep -nri 'hyperexecutePyUnit' tests -ir --include=\*.py | sed 's/:.*//'
 
 testRunnerCommand: python3 -s $test
 ```
@@ -315,7 +315,7 @@ The CLI option *--config* is used for providing the custom HyperExecute YAML fil
 ./concierge --download-artifacts --verbose --config yaml/pyunit_hyperexecute_autosplit_sample.yaml
 ```
 
-Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hypertest) to check the status of execution
+Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution
 
 <img width="1426" alt="pyunit_autosplit_execution_latest" src="https://user-images.githubusercontent.com/1688653/160467003-d7e671a7-cc14-4941-b7fa-40bbe1fc8502.png">
 
@@ -348,7 +348,7 @@ HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/
 
 Shown below is the HyperExecute Automation dashboard which also lists the tests that were executed as a part of the test suite:
 
-<img width="1238" alt="pyunit_hypertest_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/160466985-833323ae-b009-4c71-8b5d-1a6419ccbf8c.png">
+<img width="1238" alt="pyunit_hyperexecute_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/160466985-833323ae-b009-4c71-8b5d-1a6419ccbf8c.png">
 
 Here is a screenshot that lists the automation test that was executed on the HyperExecute grid:
 

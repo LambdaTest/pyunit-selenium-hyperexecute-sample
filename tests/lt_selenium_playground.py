@@ -17,7 +17,7 @@ access_key = os.environ.get("LT_ACCESS_KEY")
 
 class HyperTestPyUnitDocTest(unittest.TestCase):
     # Generate capabilites from here: https://www.lambdatest.com/capabilities-generator/
-    # setUp runs before each test case 
+    # setUp runs before each test case
     def setUp(self):
         desired_caps = {
             "build": '[Python] [Test Scenario-2] HyperTest demo using PyUnit framework',
@@ -124,7 +124,7 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         time.sleep(5)
 
         print("Progress Bar Test Complete")
-    
+
     # tearDown runs after each test case
     def tearDown(self):
         self.driver.quit()
