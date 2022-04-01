@@ -17,7 +17,7 @@ current_directory = os.getcwd()
 
 class HyperTestPyUnitTest(unittest.TestCase):
     # Generate capabilites from here: https://www.lambdatest.com/capabilities-generator/
-    # setUp runs before each test case and 
+    # setUp runs before each test case and
     def setUp(self):
         desired_caps = {
             "build": '[Python] [Test Scenario-1] HyperTest demo using PyUnit framework',
