@@ -1,0 +1,43 @@
+---
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+runson: win
+
+autosplit: true
+retryOnFailure: true
+
+maxRetries: 5
+concurrency: 2
+
+env:
+#  PAT: ${{ .secrets.testKey }}
+ TARGET_OS: Windows 11
+
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - CacheDir
+pre:
+  - mkdir CacheDir
+  - pip3 install -r requirements.txt --cache-dir CacheDir
+post:
+  - cat yaml/win/pyunit_hyperexecute_autosplit_sample.yaml
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  - name: TestReport1
+    path:
+     - example_1/**
+  - name: TestReport2
+    path:
+     - example_2/**
+
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
+
+testRunnerCommand: python3 $test

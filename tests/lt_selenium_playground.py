@@ -22,7 +22,7 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         desired_caps = {
             "build": '[Python] [Test Scenario-2] HyperTest demo using PyUnit framework',
             "name": '[Python] [Test Scenario-2] HyperTest demo using PyUnit framework',
-            "platform": 'Windows 10',
+            "platform": os.environ.get("TARGET_OS"),
             "browserName": 'chrome',
             "version": 'latest'
         }

@@ -1,0 +1,36 @@
+---
+version: 0.1
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+
+matrix:
+  files: ["tests/lt_sample_todo.py", "tests/lt_selenium_playground.py"]
+
+runson: mac
+
+env:
+#  PAT: ${{ .secrets.testKey }}
+ TARGET_OS: MacOS Catalina
+
+cacheKey: '{{ checksum "requirements.txt" }}'
+cacheDirectories:
+  - CacheDir
+pre:
+  - mkdir CacheDir
+  - pip3 install -r requirements.txt --cache-dir CacheDir
+post:
+  - cat yaml/mac/pyunit_hyperexecute_matrix_sample.yaml
+
+mergeArtifacts: true
+
+uploadArtefacts:
+  - name: TestReport1
+    path:
+     - example_1/**
+  - name: TestReport2
+    path:
+     - example_2/**
+
+testSuites:
+  - python3 $files

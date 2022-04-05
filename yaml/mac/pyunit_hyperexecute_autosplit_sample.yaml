@@ -4,7 +4,7 @@ globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
-runson: win
+runson: mac
 
 autosplit: true
 retryOnFailure: true
@@ -12,10 +12,10 @@ retryOnFailure: true
 maxRetries: 5
 concurrency: 2
 
-# env:
+env:
 #  PAT: ${{ .secrets.testKey }}
+ TARGET_OS: MacOS Catalina
 
-# Dependency caching for Windows
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
   - CacheDir
@@ -23,7 +23,7 @@ pre:
   - mkdir CacheDir
   - pip3 install -r requirements.txt --cache-dir CacheDir
 post:
-  - cat yaml/pyunit_hyperexecute_autosplit_sample.yaml
+  - cat yaml/mac/pyunit_hyperexecute_autosplit_sample.yaml
 
 mergeArtifacts: true
 
@@ -39,5 +39,5 @@ testDiscovery:
   type: raw
   mode: dynamic
   command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
-  
+
 testRunnerCommand: python3 $test
