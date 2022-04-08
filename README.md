@@ -80,7 +80,7 @@ Also, the *key:value* pairs are opaque strings for HyperExecute. For more inform
 
 ### Core
 
-In the current example, matrix YAML file (*yaml/pyunit_hyperexecute_matrix_sample.yaml*) in the repo contains the following configuration:
+In the current example, matrix YAML file (*yaml/win/pyunit_hyperexecute_matrix_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -135,11 +135,11 @@ pre:
 
 ### Post Steps
 
-Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/pyunit_hyperexecute_matrix_sample.yaml*
+Steps (or commands) that need to run after the test execution are listed in the *post* step. In the example, we *cat* the contents of *yaml/win/pyunit_hyperexecute_matrix_sample.yaml*
 
 ```yaml
 post:
-  - cat yaml/pyunit_hyperexecute_matrix_sample.yaml
+  - cat yaml/win/pyunit_hyperexecute_matrix_sample.yaml
 ```
 
 ### Artifacts Management
@@ -170,10 +170,10 @@ Now, you can download the artifacts by clicking on the Download button as shown 
 
 ## Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/pyunit_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/pyunit_hyperexecute_matrix_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./hyperexecute --download-artifacts --config --verbose yaml/pyunit_hyperexecute_matrix_sample.yaml
+./hyperexecute --download-artifacts --config --verbose yaml/win/pyunit_hyperexecute_matrix_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
@@ -194,7 +194,7 @@ For more information about auto-split execution, check out the [Auto-Split Getti
 
 ### Core
 
-Auto-split YAML file (*yaml/pyunit_hyperexecute_autosplit_sample.yaml*) in the repo contains the following configuration:
+Auto-split YAML file (*yaml/win/pyunit_hyperexecute_autosplit_sample.yaml*) in the repo contains the following configuration:
 
 ```yaml
 globalTimeout: 90
@@ -253,11 +253,11 @@ pip3 install -r requirements.txt  --cache-dir CacheDir
 
 ## Post Steps
 
-The *post* directive contains a list of commands that run as a part of post-test execution. Here, the contents of *yaml/pyunit_hyperexecute_autosplit_sample.yaml* are read using the *cat* command as a part of the post step.
+The *post* directive contains a list of commands that run as a part of post-test execution. Here, the contents of *yaml/win/pyunit_hyperexecute_autosplit_sample.yaml* are read using the *cat* command as a part of the post step.
 
 ```yaml
 post:
-  - cat yaml/pyunit_hyperexecute_autosplit_sample.yaml
+  - cat yaml/win/pyunit_hyperexecute_autosplit_sample.yaml
 ```
 
 The *testDiscovery* directive contains the command that gives details of the mode of execution, along with detailing the command that is used for test execution. Here, we are fetching the list of Python files that would be further executed using the *value* passed in the *testRunnerCommand*
@@ -309,10 +309,10 @@ Now, you can download the artifacts by clicking on the *Download* button as show
 
 ### Test Execution
 
-The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/pyunit_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
+The CLI option *--config* is used for providing the custom HyperExecute YAML file (i.e. *yaml/win/pyunit_hyperexecute_autosplit_sample.yaml*). Run the following command on the terminal to trigger the tests in Python files on the HyperExecute grid. The *--download-artifacts* option is used to inform HyperExecute to download the artifacts for the job.
 
 ```bash
-./hyperexecute --download-artifacts --verbose --config yaml/pyunit_hyperexecute_autosplit_sample.yaml
+./hyperexecute --download-artifacts --verbose --config yaml/win/pyunit_hyperexecute_autosplit_sample.yaml
 ```
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution
