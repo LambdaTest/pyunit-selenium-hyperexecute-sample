@@ -162,11 +162,11 @@ uploadArtefacts:
 
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on Artifacts button corresponding to the associated TestID.
 
-<img width="1425" alt="pyunit_matrix_artefacts_1" src="https://user-images.githubusercontent.com/1688653/160466985-833323ae-b009-4c71-8b5d-1a6419ccbf8c.png">
+<img width="1425" alt="pyunit_matrix_artefacts_1" src="https://user-images.githubusercontent.com/1688653/162371113-8aab18de-33b9-42c3-838f-2db0505bbd07.png">
 
 Now, you can download the artifacts by clicking on the Download button as shown below:
 
-<img width="1425" alt="pyunit_matrix_artefacts_2" src="https://user-images.githubusercontent.com/1688653/160466997-9c434852-73c5-45d0-8ae3-6c79a21cec02.png">
+<img width="1425" alt="pyunit_matrix_artefacts_2" src="https://user-images.githubusercontent.com/1688653/162371124-a751efaf-da80-4f9c-bdc8-d98fc8b2f61e.png">
 
 ## Test Execution
 
@@ -178,13 +178,13 @@ The CLI option *--config* is used for providing the custom HyperExecute YAML fil
 
 Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hyperexecute) to check the status of execution:
 
-<img width="1430" alt="pyunit_matrix_execution_latest" src="https://user-images.githubusercontent.com/1688653/160466985-833323ae-b009-4c71-8b5d-1a6419ccbf8c.png">
+<img width="1430" alt="pyunit_matrix_execution_latest" src="https://user-images.githubusercontent.com/1688653/162371113-8aab18de-33b9-42c3-838f-2db0505bbd07.png">
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-<img width="1413" alt="pyunit_cli_execution" src="https://user-images.githubusercontent.com/1688653/152514085-8b56de2b-4b92-4b81-a94d-58757f9cb3f7.png">
+<img width="1413" alt="pyunit_cli_execution" src="https://user-images.githubusercontent.com/1688653/162371132-1ba32fa8-c57a-4add-8039-f860d32dec2a.png">
 
-<img width="1101" alt="pyunit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152516090-b06d3d80-145f-477a-b1ed-25c1d0be3be5.png">
+<img width="1101" alt="pyunit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/162371142-35c8f214-1bcd-4b57-984d-b70d43647f20.png">
 
 ## Auto-Split Execution with PyUnit
 
@@ -321,9 +321,9 @@ Visit [HyperExecute Automation Dashboard](https://automation.lambdatest.com/hype
 
 Shown below is the execution screenshot when the YAML file is triggered from the terminal:
 
-<img width="1421" alt="pyunit_autosplit_execution_1" src="https://user-images.githubusercontent.com/1688653/152998595-7e310650-590f-493b-b498-fec82cf01a88.png">
+<img width="1421" alt="pyunit_autosplit_execution_1" src="https://user-images.githubusercontent.com/1688653/162371076-e3ed10de-2425-4a88-8ba5-cbf4dbbe67a4.png">
 
-<img width="1408" alt="pyunit_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/152523202-7da45332-560c-4e9b-b77b-8e750faea20d.png">
+<img width="1408" alt="pyunit_autosplit_cli2_execution" src="https://user-images.githubusercontent.com/1688653/162371098-8129ed25-a585-4b09-84ba-7c23ffb1ada0.png">
 
 ## Secrets Management
 
@@ -348,11 +348,11 @@ HyperExecute lets you navigate from/to *Test Logs* in Automation Dashboard from/
 
 Shown below is the HyperExecute Automation dashboard which also lists the tests that were executed as a part of the test suite:
 
-<img width="1238" alt="pyunit_hyperexecute_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/160466985-833323ae-b009-4c71-8b5d-1a6419ccbf8c.png">
+<img width="1238" alt="pyunit_hyperexecute_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/162371032-b24db722-ee2f-4a83-a3e2-80a69c2846ec.png">
 
 Here is a screenshot that lists the automation test that was executed on the HyperExecute grid:
 
-<img width="1425" alt="pyunit_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/152553689-817191b9-db5b-4fa9-a233-df1779929191.png">
+<img width="1425" alt="pyunit_testing_automation_dashboard" src="https://user-images.githubusercontent.com/1688653/162371043-cb2a143d-2b17-46f6-8734-9b2b76b202d1.png">
 
 ## We are here to help you :)
 * LambdaTest Support: [support@lambdatest.com](mailto:support@lambdatest.com)
