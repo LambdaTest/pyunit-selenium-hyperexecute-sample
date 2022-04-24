@@ -20,7 +20,7 @@ cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
   - CacheDir
 pre:
-  - mkdir CacheDir
+  - mkdir -p CacheDir
   - pip3 install -r requirements.txt --cache-dir CacheDir
 post:
   - cat yaml/win/pyunit_hyperexecute_autosplit_sample.yaml
