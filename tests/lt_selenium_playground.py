@@ -49,11 +49,11 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         name.send_keys("Testing")
         time.sleep(2)
 
-        email_address = driver.find_element(By.XPATH, "//input[@name='email']")
+        email_address = driver.find_elemen(By.XPATH, "//input[@id='inputEmail4']")
         email_address.send_keys("testing@testing.com")
         time.sleep(2)
 
-        password = driver.find_element(By.XPATH, "//input[@name='password']")
+        password = driver.find_element(By.XPATH, "//input[@id='inputPassword4']")
         password.send_keys("password")
         time.sleep(2)
 
@@ -118,10 +118,6 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         drag_drop = driver.find_element(By.XPATH, "//a[.='Drag & Drop Sliders']")
         drag_drop.click()
         time.sleep(10)
-
-        move_slider = driver.find_element(By.CSS_SELECTOR, "[value='20']")
-        action.click_and_hold(move_slider).move_by_offset(40, 0).release().perform()
-        time.sleep(5)
 
         print("Progress Bar Test Complete")
 
