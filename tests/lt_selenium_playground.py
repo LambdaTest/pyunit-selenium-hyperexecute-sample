@@ -49,7 +49,7 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         name.send_keys("Testing")
         time.sleep(2)
 
-        email_address = driver.find_elemen(By.XPATH, "//input[@id='inputEmail4']")
+        email_address = driver.find_element(By.XPATH, "//input[@id='inputEmail4']")
         email_address.send_keys("testing@testing.com")
         time.sleep(2)
 
