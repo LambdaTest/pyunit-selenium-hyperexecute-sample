@@ -27,12 +27,9 @@ post:
 mergeArtifacts: true
 
 uploadArtefacts:
-  - name: TestReport1
+  - name: TestReport
     path:
-     - example_1/**
-  - name: TestReport2
-    path:
-     - example_2/**
+     - example_*/**
 
 testDiscovery:
   type: raw
