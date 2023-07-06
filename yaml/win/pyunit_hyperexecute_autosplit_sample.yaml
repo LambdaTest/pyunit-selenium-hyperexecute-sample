@@ -37,3 +37,5 @@ testDiscovery:
   command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
 
 testRunnerCommand: python3 $test
+
+jobLabel: [selenium-pyunit, win, autosplit]
