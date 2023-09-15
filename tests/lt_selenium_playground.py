@@ -90,7 +90,7 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         time.sleep(2)
 
         # Click on the Submit button
-        submit_button = self.driver.find_element(By.CSS_SELECTOR, ".btn")
+        submit_button = self.driver.find_element(By.CSS_SELECTOR, "#seleniumform > div.text-right.mt-20 > button")
         submit_button.click()
         time.sleep(2)
 
@@ -108,14 +108,16 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         wait = WebDriverWait(driver, 5)
 
         driver.get('https://www.lambdatest.com/selenium-playground/input-form-demo')
-
-        element = driver.find_element(By.XPATH, "//p[contains(.,'Progress Bar & Sliders')]")
+    
+        driver.get('https://www.lambdatest.com/selenium-playground/bootstrap-progress-bar-dialog-demo')
+        element = driver.find_element(By.XPATH, "//*[@id='__next']/section[2]/div/div/h1")
         element.click()
         # wait.until(EC.element_to_be_clickable(element)).click()
         time.sleep(3)
 
         # Click on the Drag & Drop Sliders
-        drag_drop = driver.find_element(By.XPATH, "//a[.='Drag & Drop Sliders']")
+        driver.get('https://www.lambdatest.com/selenium-playground/drag-and-drop-demo')
+        drag_drop = driver.find_element(By.XPATH, "//*[@id='__next']/section[2]/div/div/h1")
         drag_drop.click()
         time.sleep(10)
 
