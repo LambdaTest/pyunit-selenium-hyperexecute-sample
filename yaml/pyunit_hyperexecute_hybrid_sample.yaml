@@ -1,35 +1,42 @@
----
 version: 0.1
-globalTimeout: 90
-testSuiteTimeout: 90
-testSuiteStep: 90
+globalTimeout: 150
+testSuiteTimeout: 150
+testSuiteStep: 150
 
-runson: linux
-
+runson: ${matrix.os}
+retryOnFailure: false
 autosplit: true
-retryOnFailure: true
-
 maxRetries: 1
-concurrency: 2
+parallelism: 1
+concurrency: 3
+
+matrix:
+  os: [mac, win, linux]
 
 env:
 #  PAT: ${{ .secrets.testKey }}
- TARGET_OS: LINUX
+ TARGET_OS: ${matrix.os}
 
 cacheKey: '{{ checksum "requirements.txt" }}'
 cacheDirectories:
   - CacheDir
+
 pre:
   - pip3 install -r requirements.txt --cache-dir CacheDir
 post:
-  - cat yaml/linux/pyunit_hyperexecute_autosplit_sample.yaml
+  - cat yaml/pyunit_hyperexecute_hybrid_sample.yaml
+
+mergeArtifacts: true
 
 mergeArtifacts: true
 
 uploadArtefacts:
-  - name: TestReport
+  - name: TestReport1
     path:
-     - example_*/**
+     - example_1/**
+  - name: TestReport2
+    path:
+     - example_2/**
 
 report: true
 partialReports:
@@ -44,4 +51,4 @@ testDiscovery:
 
 testRunnerCommand: python3 $test
 
-jobLabel: [selenium-pyunit, linux, autosplit]
+jobLabel: [selenium-pyunit, hybrid]

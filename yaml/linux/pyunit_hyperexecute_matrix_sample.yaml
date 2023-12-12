@@ -34,6 +34,12 @@ uploadArtefacts:
     path:
      - example_2/**
 
+report: true
+partialReports:
+    type: json
+    location: /
+    frameworkName: extent
+
 testSuites:
   - python3 $files
 
