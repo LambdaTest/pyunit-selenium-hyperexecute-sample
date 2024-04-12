@@ -107,21 +107,20 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
         action = ActionChains(driver)
         wait = WebDriverWait(driver, 5)
 
-        driver.get('https://www.lambdatest.com/selenium-playground/input-form-demo')
+        driver.get('https://www.selenium.dev/documentation/')
     
-        driver.get('https://www.lambdatest.com/selenium-playground/bootstrap-progress-bar-dialog-demo')
-        element = driver.find_element(By.XPATH, "//*[@id='__next']/section[2]/div/div/h1")
-        element.click()
-        # wait.until(EC.element_to_be_clickable(element)).click()
-        time.sleep(3)
+        driver.find_element(By.LINK_TEXT, "Selenium Manager").click()
+        time.sleep(1)
+        driver.find_element(By.LINK_TEXT, "WebDriver").click()
+        driver.find_element(By.LINK_TEXT, "Browsers").click()
+        driver.find_element(By.LINK_TEXT, "IE Driver Server").click()
+        driver.find_element(By.LINK_TEXT, "Legacy").click()
+        driver.find_element(By.LINK_TEXT, "JSON Wire Protocol").click()
+        driver.find_element(By.LINK_TEXT, "Developers").click()
+        time.sleep(1)
+        driver.find_element(By.LINK_TEXT, "Tips").click()
 
-        # Click on the Drag & Drop Sliders
-        driver.get('https://www.lambdatest.com/selenium-playground/drag-and-drop-demo')
-        drag_drop = driver.find_element(By.XPATH, "//*[@id='__next']/section[2]/div/div/h1")
-        drag_drop.click()
-        time.sleep(10)
-
-        print("Progress Bar Test Complete")
+        print("Selenium Documentation")
 
     # tearDown runs after each test case
     def tearDown(self):
