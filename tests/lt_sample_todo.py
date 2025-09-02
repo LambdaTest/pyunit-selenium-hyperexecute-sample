@@ -62,7 +62,7 @@ class HyperTestPyUnitTest(unittest.TestCase):
         time.sleep(3)
 
         # Verified added item
-        added_item = driver.find_element(By.XPATH, "//span[@class='done-false']").text
+        added_item = driver.find_element(By.XPATH, "//li[contains(@class,'todo-item')]//span[contains(text(),\"Yey, Let's add it to list\")]").text
         time.sleep(3)
         print (added_item)
 
