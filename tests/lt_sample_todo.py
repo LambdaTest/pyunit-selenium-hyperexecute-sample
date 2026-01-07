@@ -19,16 +19,20 @@ class HyperTestPyUnitTest(unittest.TestCase):
     # Generate capabilites from here: https://www.lambdatest.com/capabilities-generator/
     # setUp runs before each test case and
     def setUp(self):
-        desired_caps = {
+        options = webdriver.FirefoxOptions()
+        options.browser_version = 'latest'
+        options.platform_name = os.environ.get("TARGET_OS")
+        
+        # LambdaTest specific capabilities
+        lt_options = {
             "build": '[Python] [Test Scenario-1] HyperTest demo using PyUnit framework',
             "name": '[Python] [Test Scenario-1] HyperTest demo using PyUnit framework',
-            "platform": os.environ.get("TARGET_OS"),
-            "browserName": 'firefox',
-            "version": 'latest'
         }
+        options.set_capability('LT:Options', lt_options)
+        
         self.driver = webdriver.Remote(
            command_executor="https://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key),
-           desired_capabilities= desired_caps)
+           options=options)
 
 
 # tearDown runs after each test case
