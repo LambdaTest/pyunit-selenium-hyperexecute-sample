@@ -19,16 +19,20 @@ class HyperTestPyUnitDocTest(unittest.TestCase):
     # Generate capabilites from here: https://www.lambdatest.com/capabilities-generator/
     # setUp runs before each test case
     def setUp(self):
-        desired_caps = {
+        options = webdriver.ChromeOptions()
+        options.browser_version = 'latest'
+        options.platform_name = os.environ.get("TARGET_OS")
+        
+        # LambdaTest specific capabilities
+        lt_options = {
             "build": '[Python] [Test Scenario-2] HyperTest demo using PyUnit framework',
             "name": '[Python] [Test Scenario-2] HyperTest demo using PyUnit framework',
-            "platform": os.environ.get("TARGET_OS"),
-            "browserName": 'chrome',
-            "version": 'latest'
         }
+        options.set_capability('LT:Options', lt_options)
+        
         self.driver = webdriver.Remote(
            command_executor="https://{}:{}@hub.lambdatest.com/wd/hub".format(username, access_key),
-           desired_capabilities= desired_caps)
+           options=options)
 
     def test_input_forms(self):
         driver = self.driver
