@@ -43,7 +43,7 @@ class HyperTestPyUnitTest(unittest.TestCase):
         driver = self.driver
 
         # Url
-        driver.get("https://lambdatest.github.io/sample-todo-app/")
+        driver.get("https://ltqa-frontend.lambdatestinternal.com/sample-todo-app/")
 
         # Click on check box
         check_box_one = driver.find_element(By.NAME, "li1")
@@ -66,7 +66,7 @@ class HyperTestPyUnitTest(unittest.TestCase):
         time.sleep(3)
 
         # Verified added item
-        added_item = driver.find_element(By.XPATH, "//li[contains(@class,'todo-item')]//span[contains(text(),\"Yey, Let's add it to list\")]").text
+        added_item = driver.find_element(By.XPATH, "//li//span[contains(text(),\"Yey, Let's add it to list\")]").text
         time.sleep(3)
         print (added_item)
 
