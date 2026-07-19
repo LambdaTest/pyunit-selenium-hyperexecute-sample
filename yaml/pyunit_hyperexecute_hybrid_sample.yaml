@@ -41,7 +41,7 @@ partialReports:
 
 testDiscovery:
   type: raw
-  mode: dynamic
+  mode: remote
   command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
 
 testRunnerCommand: python3 $test
