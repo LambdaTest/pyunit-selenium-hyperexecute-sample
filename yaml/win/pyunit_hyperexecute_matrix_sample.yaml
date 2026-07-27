@@ -1,43 +1,59 @@
 ---
 version: 0.1
+
+runtime:
+  language: python
+  version: "3.11"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
-matrix:
-  files: ["tests/lt_sample_todo.py", "tests/lt_selenium_playground.py"]
-
 runson: win
-retryOnFailure: true
 
+retryOnFailure: true
 maxRetries: 1
 
+matrix:
+  files:
+    - "tests/lt_sample_todo.py"
+    - "tests/lt_selenium_playground.py"
+
 env:
-#  PAT: ${{ .secrets.testKey }}
- TARGET_OS: Windows 11
+  TARGET_OS: Windows 11
 
 cacheKey: '{{ checksum "requirements.txt" }}'
+
 cacheDirectories:
   - CacheDir
+
 pre:
-  - pip3 install -r requirements.txt --cache-dir CacheDir
+  - python --version
+  - pip --version
+  - python -m pip install --upgrade pip
+  - python -m pip install -r requirements.txt --cache-dir CacheDir
+
 post:
-  - cat yaml/win/pyunit_hyperexecute_matrix_sample.yaml
+  - type yaml\win\pyunit_hyperexecute_matrix_sample.yaml
 
 mergeArtifacts: true
 
 uploadArtefacts:
   - name: TestReport
     path:
-     - example_*/**
+      - example_*/**
 
 report: true
+
 partialReports:
-    type: json
-    location: /
-    frameworkName: extent
+  type: json
+  location: /
+  frameworkName: extent
 
 testSuites:
-  - python3 $files
+  - python $files
 
-jobLabel: [selenium-pyunit, win, matrix]
+jobLabel:
+  - selenium-pyunit
+  - win
+  - matrix
