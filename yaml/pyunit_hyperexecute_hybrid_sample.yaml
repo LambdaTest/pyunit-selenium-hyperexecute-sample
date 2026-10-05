@@ -1,9 +1,16 @@
+---
 version: 0.1
+
+runtime:
+  language: python
+  version: "3.11"
+
 globalTimeout: 150
 testSuiteTimeout: 150
 testSuiteStep: 150
 
 runson: ${matrix.os}
+
 retryOnFailure: false
 autosplit: true
 maxRetries: 1
@@ -11,39 +18,49 @@ parallelism: 1
 concurrency: 3
 
 matrix:
-  os: [mac, win, linux]
+  os:
+    - mac
+    - win
+    - linux
 
 env:
-#  PAT: ${{ .secrets.testKey }}
- TARGET_OS: ${matrix.os}
+  TARGET_OS: ${matrix.os}
 
 cacheKey: '{{ checksum "requirements.txt" }}'
+
 cacheDirectories:
   - CacheDir
 
 pre:
-  - pip3 install -r requirements.txt --cache-dir CacheDir
+  - python --version
+  - python -m pip --version
+  - python -m pip install --upgrade pip
+  - python -m pip install -r requirements.txt --cache-dir CacheDir
+
 post:
-  - cat yaml/pyunit_hyperexecute_hybrid_sample.yaml
+  - echo "Post execution completed."
 
 mergeArtifacts: true
 
 uploadArtefacts:
   - name: TestReport
     path:
-     - example_*/**
+      - example_*/**
 
 report: true
+
 partialReports:
-    type: json
-    location: /
-    frameworkName: extent
+  type: json
+  location: /
+  frameworkName: extent
 
 testDiscovery:
   type: raw
   mode: remote
   command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
 
-testRunnerCommand: python3 $test
+testRunnerCommand: python $test
 
-jobLabel: [selenium-pyunit, hybrid]
+jobLabel:
+  - selenium-pyunit
+  - hybrid

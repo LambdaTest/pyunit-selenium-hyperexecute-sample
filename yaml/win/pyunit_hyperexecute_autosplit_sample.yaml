@@ -1,5 +1,8 @@
 ---
 version: 0.1
+runtime:
+  language: python
+  version: "3.11"
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
@@ -42,6 +45,6 @@ testDiscovery:
   mode: remote
   command: grep -nri 'HyperTestPyUnit' tests -ir --include=\*.py | sed 's/:.*//'
 
-testRunnerCommand: python3 $test
+testRunnerCommand: python $test
 
 jobLabel: [selenium-pyunit, win, autosplit]
